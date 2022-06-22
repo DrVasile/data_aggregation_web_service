@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <p>
+        <a href="{% url "location_data_create" %}" class="btn btn-primary">Add location data</a>
+    </p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in location_data %}
+            <tr>
+                <td>{{ data.object_id }}</td>
+                <td><a href="{% url "location_data_update" data.pk %}">{{ data.latitude }}</a></td>
+                <td><a href="{% url "location_data_update" data.pk %}">{{ data.longitude }}</a></td>
+            </tr>
+        {% empty %}
+            <tr class="table-active">
+                <td colspan="3">No data</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
